@@ -1,0 +1,18 @@
+
+SetEnvIf Authorization .+ HTTP_AUTHORIZATION=$0
+
+
+Options -Indexes
+
+RewriteEngine On   
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Authentication
+RewriteRule    ^sessions/([0-9]+)$          controller/sessions.php?sessionid=$1    [L]    
+RewriteRule    ^sessions$      controller/sessions.php      [L]    
+
+
+
+# Users
+RewriteRule    ^users$      controller/users.php      [L]    # Handle user requests
